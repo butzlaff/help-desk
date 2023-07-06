@@ -1,1 +1,18 @@
-{"users":[{"id":1,"name":"John Doe","email":"teste@test.com","password":"123456","isAdmin":true},{"id":2,"name":"Charles Doe","email":"teste2@test.com","password":"123456","isAdmin":false},{"id":3,"name":"Danielle Santos","email":"teste3@teste.com","password":"123456","isAdmin":false},{"id":4,"name":"Danielle Santos","email":"teste3@teste.com","password":"123456","isAdmin":false},{"id":5,"name":"Danielle Santos","email":"teste3@teste.com","password":"123456","isAdmin":false}]}
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "teste@test.com",
+      "password": "123456",
+      "isAdmin": true
+    },
+    {
+      "id": 4,
+      "name": "John Doe 2",
+      "email": "teste3@test.com",
+      "password": "123456",
+      "isAdmin": true
+    }
+  ]
+}

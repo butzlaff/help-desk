@@ -1,16 +1,17 @@
 'use client';
 // import Button from '@/components/Button';
 import Input from '@/components/Input';
+import Link from 'next/link';
 import { MouseEventHandler, useState } from 'react';
 
-const file = 'http://localhost:3000/api/user';
+const URL = 'http://localhost:3000/api/user';
 
 export default function Home() {
   const [email, setEmail] = useState('');
 
   const validateLogin: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
-    const response = await fetch(file);
+    const response = await fetch(URL);
     const data = await response.json();
     console.log(data);
   };
@@ -41,20 +42,21 @@ export default function Home() {
         <div className='flex items-center gap-2 justify-center pt-2'>
           <button
             className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-            data-testid='button'
+            data-testid='button-login'
             onClick={validateLogin}
           >
             Login
           </button>
           <button
             className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
-            data-testid='button'
+            data-testid='button-register'
             // onClick={resiterNewUser}
           >
             Registrar
           </button>
         </div>
       </form>
+      <Link href='/register'>Contato</Link>
       {/* <Button onClick={() => console.log('teste')}>Teste</Button> */}
     </main>
   );

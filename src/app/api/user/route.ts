@@ -24,10 +24,10 @@ export async function POST(request: NextRequest) {
     const { name, email, password, isAdmin }: User = data;
     const response = await fs.readFile(file, 'utf-8');
     const reply = JSON.parse(response);
-    const id = reply.users.length + 1;
+    const id = reply.users[reply.users.length - 1].id + 1;
     const newUser = { id, name, email, password, isAdmin };
     reply.users.push(newUser);
-    await fs.writeFile(file, JSON.stringify(reply));
+    await fs.writeFile(file, JSON.stringify(reply, null, 2));
     return NextResponse.json({ ...newUser }, { status: 201 });
   } catch (err: any) {
     return NextResponse.json({ message: err.message }, { status: 500 });
