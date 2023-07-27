@@ -1,63 +1,42 @@
 'use client';
-// import Button from '@/components/Button';
-import Input from '@/components/Input';
-import Link from 'next/link';
-import { MouseEventHandler, useState } from 'react';
 
-const URL = 'http://localhost:3000/api/user';
+import { signOut, useSession } from 'next-auth/react';
+import { MouseEventHandler, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+// import Button from '@/components/Button';
 
 export default function Home() {
-  const [email, setEmail] = useState('');
+  const { data: session, status } = useSession();
 
-  const validateLogin: MouseEventHandler<HTMLButtonElement> = async (e) => {
+  const router = useRouter();
+
+  console.log(status);
+
+  useEffect(() => {
+    if (!session?.user && status === 'unauthenticated') {
+      router.push('/auth/signin');
+    }
+  }, [router, session?.user, status]);
+
+  const logout: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
-    const response = await fetch(URL);
-    const data = await response.json();
-    console.log(data);
-  };
 
-  const resiterNewUser = () => {
-    console.log('resiterNewUser');
+    await signOut({ redirect: false });
   };
 
   return (
     <main className='flex items-center p-24 grid-cols-2 min-h-screen'>
-      <form className='bg-white px-12 py-12 rounded-lg min-w-max'>
-        <Input
-          id='email'
-          type='email'
-          name='email'
-          data-testid='email'
-          required={true}
-          placeholder='E-mail'
-        />
-        <Input
-          type='password'
-          id='password'
-          name='password'
-          data-testid='password'
-          required={true}
-          placeholder='Password'
-        />
-        <div className='flex items-center gap-2 justify-center pt-2'>
-          <button
-            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-            data-testid='button-login'
-            onClick={validateLogin}
-          >
-            Login
-          </button>
-          <button
-            className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
-            data-testid='button-register'
-            // onClick={resiterNewUser}
-          >
-            Registrar
-          </button>
-        </div>
-      </form>
-      <Link href='/register'>Contato</Link>
-      {/* <Button onClick={() => console.log('teste')}>Teste</Button> */}
+      {session?.user && <p>Bem vindo {session?.user.email}</p>}
+      {status === 'authenticated' && (
+        <button
+          className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
+          data-testid='button-register'
+          onClick={logout}
+        >
+          Deslogar
+        </button>
+      )}
     </main>
   );
 }

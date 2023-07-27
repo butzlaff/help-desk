@@ -13,6 +13,21 @@
       "email": "teste3@test.com",
       "password": "123456",
       "isAdmin": true
+    },
+    {
+      "id": 5,
+      "email": "emiliobutz@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 6,
+      "email": "emiliobutz@gmail.com",
+      "password": "12313123asd"
+    },
+    {
+      "id": 7,
+      "email": "emiliobutz@gmail.com",
+      "password": "12313123"
     }
   ]
 }

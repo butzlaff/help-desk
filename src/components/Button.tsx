@@ -1,11 +1,13 @@
-import React, { ButtonHTMLAttributes, ReactNode } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  MouseEventHandler,
+  ReactNode,
+} from 'react';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
-}
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const Button = ({ children, onClick }: ButtonProps) => {
-  return <button onClick={onClick}>{children}</button>;
+const Button = ({ ...props }: ButtonProps) => {
+  return <button {...props}>{props.children}</button>;
 };
 
 export default Button;

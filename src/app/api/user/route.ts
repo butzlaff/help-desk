@@ -3,11 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import * as fs from 'fs/promises';
 
 interface User {
+  id: number;
   name: string;
   email: string;
   password: string;
   isAdmin: boolean;
-  id: number;
 }
 
 const file = 'src/data/users.json';

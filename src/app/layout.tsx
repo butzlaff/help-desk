@@ -1,5 +1,7 @@
+import Provider from '@/components/Provider';
 import './globals.css';
 import { Inter } from 'next/font/google';
+import AppBar from '@/components/AppBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,7 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <Provider>
+        <body>
+          <AppBar />
+          {children}
+        </body>
+      </Provider>
     </html>
   );
 }
