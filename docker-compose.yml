@@ -4,12 +4,12 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_PASSWORD: "booiscutie"
-      POSTGRES_USER: "postgres"
-      POSTGRES_DB: "helpdesk"
+      POSTGRES_PASSWORD: booiscutie
+      POSTGRES_USER: postgres
+      POSTGRES_DB: helpdesk
     ports:
       - "5432:5432"
     volumes:
-      - ./prisma-data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
 volumes:
-  prisma-data:
+  pgdata:
