@@ -11,13 +11,6 @@ services:
       - "5432:5432"
     networks:
       - postgres-network
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - "8080:8080"
-    networks:
-      - postgres-network
 networks:
   postgres-network:
     driver: bridge
