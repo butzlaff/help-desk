@@ -3,11 +3,19 @@
 import { signOut, useSession } from 'next-auth/react';
 import { MouseEventHandler, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
-// import Button from '@/components/Button';
+interface sessionProps {
+  user: {
+    name: string;
+    email: string;
+    avatar: string;
+  } | null;
+}
 
 export default function Home() {
   const { data: session, status } = useSession();
+  // const { user }: sessionProps = session;
 
   const router = useRouter();
 
@@ -25,18 +33,22 @@ export default function Home() {
     await signOut({ redirect: false });
   };
 
+  console.log(session?.user);
+
   return (
-    <main className='flex items-center p-24 grid-cols-2 min-h-screen'>
-      {session?.user && <p>Bem vindo {session?.user.email}</p>}
-      {status === 'authenticated' && (
-        <button
-          className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
-          data-testid='button-register'
-          onClick={logout}
-        >
-          Deslogar
-        </button>
-      )}
+    <main className='flex items-center p-4 grid-cols-2'>
+      <div className='flex flex-col justify-center items-center'>
+        <h1 className='text-4xl font-bold mb-4'>Welcome to the app!</h1>
+        <Image
+          src={session?.user?.avatar}
+          width={200}
+          height={200}
+          alt='Avatar'
+        />
+        <p className='text-xl'>
+          You are logged in as <strong>{session?.user?.email}</strong>
+        </p>
+      </div>
     </main>
   );
 }

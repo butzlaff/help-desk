@@ -23,7 +23,7 @@ const AppBar = () => {
         ) : (
           <>
             <p className='flex text-lg flex-col justify-center'>
-              Bem vindo, {session?.user.email}
+              Bem vindo, {session?.user.name}
             </p>
             <Button
               onClick={() => signOut()}
