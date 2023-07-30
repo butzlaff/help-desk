@@ -4,6 +4,7 @@ import React from 'react';
 import Button from './Button';
 import { signOut, useSession } from 'next-auth/react';
 import AvatarLogin from './AvatarLogin';
+import Image from 'next/image';
 
 const AppBar = () => {
   const { data: session, status } = useSession();
@@ -32,7 +33,17 @@ const AppBar = () => {
               Sign out
             </Button>
             <Button>
-              <AvatarLogin />
+              {session?.user?.avatar ? (
+                <Image
+                  src={session?.user?.avatar}
+                  alt='Avatar'
+                  className='rounded-full w-10 h-10'
+                  width={40}
+                  height={40}
+                />
+              ) : (
+                <AvatarLogin />
+              )}
             </Button>
           </>
         )}

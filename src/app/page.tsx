@@ -5,17 +5,8 @@ import { MouseEventHandler, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
-interface sessionProps {
-  user: {
-    name: string;
-    email: string;
-    avatar: string;
-  } | null;
-}
-
 export default function Home() {
   const { data: session, status } = useSession();
-  // const { user }: sessionProps = session;
 
   const router = useRouter();
 
@@ -27,27 +18,22 @@ export default function Home() {
     }
   }, [router, session?.user, status]);
 
-  const logout: MouseEventHandler<HTMLButtonElement> = async (e) => {
-    e.preventDefault();
-
-    await signOut({ redirect: false });
-  };
-
-  console.log(session?.user);
-
   return (
     <main className='flex items-center p-4 grid-cols-2'>
       <div className='flex flex-col justify-center items-center'>
         <h1 className='text-4xl font-bold mb-4'>Welcome to the app!</h1>
-        <Image
-          src={session?.user?.avatar}
-          width={200}
-          height={200}
-          alt='Avatar'
-        />
+        <div className='overflow-hidden'>
+          <Image
+            src={session?.user?.avatar || ''}
+            width={100}
+            height={80}
+            alt='Avatar'
+          />
+        </div>
         <p className='text-xl'>
           You are logged in as <strong>{session?.user?.email}</strong>
         </p>
+        <p>Your role is {session?.user?.isAdmin ? 'Administrator' : 'user'} </p>
       </div>
     </main>
   );
