@@ -8,7 +8,9 @@ import Image from 'next/image';
 
 const AppBar = () => {
   const { data: session, status } = useSession();
+  const imageAvatar = session?.user?.avatar || session?.user?.image;
 
+  console.log(session);
   return (
     <header className='bg-blue-300 py-2'>
       <div className='flex justify-end text-sm gap-4 mr-4'>
@@ -33,9 +35,9 @@ const AppBar = () => {
               Sign out
             </Button>
             <Button>
-              {session?.user?.avatar ? (
+              {imageAvatar ? (
                 <Image
-                  src={session?.user?.avatar}
+                  src={imageAvatar}
                   alt='Avatar'
                   className='rounded-full w-10 h-10'
                   width={40}

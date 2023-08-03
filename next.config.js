@@ -8,7 +8,19 @@ const nextConfig = {
         hostname: 'avatars.githubusercontent.com',
         port: '',
         pathname: '/**',
-      },
+      }, // GitHub avatars
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      }, // Google avatars
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
 }

@@ -8,7 +8,8 @@ declare module 'next-auth' {
       email: string;
       isAdmin: string;
       accessToken: string;
-      avatar: string;
+      avatar?: string;
+      image?: string;
     };
   }
 }
